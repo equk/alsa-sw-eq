@@ -1,0 +1,39 @@
+# ALSA library configuration file
+
+# PCM Devices
+pcm.usb {type hw card Sound}
+ctl.usb {type hw card Sound}
+pcm.pch {type hw card PCH}
+ctl.pch {type hw card PCH}
+
+pcm.eq {
+    type ladspa
+
+    path "/usr/lib/ladspa"
+
+    plugins [
+    {
+        label mbeq
+        id 1197
+        input {
+            # bands: 50hz, 100hz, 156hz, 220hz, 311hz, 440hz, 622hz, 880hz, 1250hz, 1750hz, 25000hz,
+            # 50000hz, 10000hz, 20000hz
+            controls [ -10 -20 -10 -8 -10 -15 -5 -5 -20 0 1 -1 -1 -1 ]
+            }
+        }
+    ]
+}
+
+pcm.disabled {
+    type plug
+    slave.pcm "eq"
+}
+
+pcm.dsp0 {
+    type plug
+    slave.pcm "eq"
+}
+
+# Include settings that are under the control of asoundconf(1).
+# (To disable these settings, comment out this line.)
+</home/bradley/.asoundrc.asoundconf>

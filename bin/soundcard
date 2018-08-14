@@ -1,0 +1,50 @@
+#!/bin/bash
+##
+#
+# soundcard selector (USB / Onboard)
+#
+# also added in enable equalizer for USB headset (disabled for onboard)
+#
+# dependencies: asoundconf, ncurses, dialog, ladspa, alsa-plugins
+#
+##
+# equk 2017 - equk.co.uk
+##
+
+# Check for root ( quit if root :x )
+if [ $(whoami) = "root" ]; then
+    exit 1
+fi
+
+## variables
+
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="ALSA Soundcard Selector"
+TITLE="Soundcard Selector"
+MENU="Select which device to use:"
+
+OPTIONS=(1 "USB Audio"
+         2 "Onboard"
+         3 "Exit")
+
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+
+clear
+case $CHOICE in
+        1)
+            asoundconf set-default-card Sound && sed -i -e 's/pcm.disabled/pcm.!default/g' ~/.asoundrc
+            ;;
+        2)
+            asoundconf set-default-card PCH && sed -i -e 's/pcm.!default/pcm.disabled/g' ~/.asoundrc
+            ;;
+        3)
+            ;;
+esac
