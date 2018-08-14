@@ -14,7 +14,7 @@ Onboard sound has no EQ & the USB interface has a Multiband EQ for a headset (ba
 
 ## screenshot
 
--screenshot-
+![](https://raw.githubusercontent.com/equk/alsa-sw-eq/master/screenshot.png)
 
 ## Requirements
 
