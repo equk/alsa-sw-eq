@@ -8,9 +8,9 @@ Script & Config to utilize a Multiband EQ and switch between audio devices from 
 * LADSPA (Linux Audio Developers Simple Plugin Architecture)
 * mbeq (ladspa plugin)
 
-Currently the script switches between onboard audio & a USB interface.
+Currently the script switches between a USB DAC & a USB Headset.
 
-Onboard sound has no EQ & the USB interface has a Multiband EQ for a headset (based on frequency response graph)
+The USB DAC (speakers) has no EQ & the USB Headset has a Multiband EQ (based on frequency response graph)
 
 ## screenshot
 
